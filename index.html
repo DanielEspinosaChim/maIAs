@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>maIAs — Inteligencia artificial con raíces en Yucatán</title>
+  <meta name="description" content="maIAs es la comunidad de inteligencia artificial y ciencia de datos de Yucatán. Aprendemos, construimos y compartimos: del machine learning clásico a la IA generativa." />
+  <meta name="theme-color" content="#0D1D20" />
+  <meta property="og:title" content="maIAs — IA con raíces en Yucatán" />
+  <meta property="og:description" content="Comunidad de inteligencia artificial y ciencia de datos en Yucatán." />
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="img/favicon.png" />
+  <link rel="stylesheet" href="fonts/fonts.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Patrón de greca escalonada (xicalcoliuhqui), reutilizado en toda la página -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="friezeMotif"><rect x="-2" y="0" width="124" height="3"/><rect x="-2" y="41" width="124" height="3"/><rect x="-2" y="6" width="124" height="1.5"/><rect x="-2" y="36.5" width="124" height="1.5"/><path d="M4 33H11V28H16V23H21V18H26V13H42V31H32V20H37" fill="none" stroke-width="2.6" stroke-linejoin="miter"/><rect x="50" y="10" width="3.6" height="24" rx="1"/><rect x="49.2" y="17" width="5.2" height="1.6"/><rect x="49.2" y="26" width="5.2" height="1.6"/><rect x="57" y="10" width="3.6" height="24" rx="1"/><rect x="56.2" y="17" width="5.2" height="1.6"/><rect x="56.2" y="26" width="5.2" height="1.6"/><rect x="64" y="10" width="3.6" height="24" rx="1"/><rect x="63.2" y="17" width="5.2" height="1.6"/><rect x="63.2" y="26" width="5.2" height="1.6"/><path d="M78 11L82 16L78 21L74 16Z" fill="none" stroke-width="1.6"/><path d="M86 11L90 16L86 21L82 16Z" fill="none" stroke-width="1.6"/><path d="M94 11L98 16L94 21L90 16Z" fill="none" stroke-width="1.6"/><path d="M102 11L106 16L102 21L98 16Z" fill="none" stroke-width="1.6"/><path d="M110 11L114 16L110 21L106 16Z" fill="none" stroke-width="1.6"/><path d="M78 23L82 28L78 33L74 28Z" fill="none" stroke-width="1.6"/><path d="M86 23L90 28L86 33L82 28Z" fill="none" stroke-width="1.6"/><path d="M94 23L98 28L94 33L90 28Z" fill="none" stroke-width="1.6"/><path d="M102 23L106 28L102 33L98 28Z" fill="none" stroke-width="1.6"/><path d="M110 23L114 28L110 33L106 28Z" fill="none" stroke-width="1.6"/><path d="M82 17L86 22L82 27L78 22Z" fill="none" stroke-width="1.6"/><path d="M90 17L94 22L90 27L86 22Z" fill="none" stroke-width="1.6"/><path d="M98 17L102 22L98 27L94 22Z" fill="none" stroke-width="1.6"/><path d="M106 17L110 22L106 27L102 22Z" fill="none" stroke-width="1.6"/></g>
+      <pattern id="frieze" width="120" height="44" patternUnits="userSpaceOnUse">
+        <use href="#friezeMotif" x="1.2" y="1.2" fill="#050c0d" stroke="#050c0d" opacity=".9"/>
+        <use href="#friezeMotif" fill="#cfc6b3" stroke="#cfc6b3" opacity=".42"/>
+      </pattern>
+      <pattern id="greca" width="48" height="24" patternUnits="userSpaceOnUse">
+        <path d="M0 22H6V17H11V12H16V7H21V2H36V16H27V9M36 16V22H48" fill="none" stroke="currentColor" stroke-width="2.2" />
+      </pattern>
+    </defs>
+  </svg>
+
+  <!-- Loader: cuenta vigesimal maya -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader__num" id="loaderNum"></div>
+    <div class="loader__meta mono"><span>maIAs</span><span id="loaderPct">00</span></div>
+  </div>
+
+  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__ring"></span><span class="cursor__dot"></span><span class="cursor__label mono"></span></div>
+
+  <header class="nav" id="nav">
+    <a href="#inicio" class="logo" aria-label="maIAs, inicio">
+      <img class="logo__img logo__img--claro" src="img/logo-claro.png" alt="maIAs" width="1215" height="312" /><img class="logo__img logo__img--oscuro" src="img/logo-oscuro.png" alt="" width="1215" height="312" aria-hidden="true" />
+    </a>
+    <nav class="nav__links" aria-label="Principal">
+      <a href="#comunidad">Comunidad</a>
+      <a href="#areas">Áreas</a>
+      <a href="#programas">Programas</a>
+      <a href="#cero">Base 20</a>
+    </nav>
+    <a href="#unete" class="btn btn--sm nav__cta">Únete</a>
+  </header>
+
+  <main>
+    <!-- ============ ESCENA 3D + HERO ============ -->
+    <div class="scrolly" id="scrolly">
+      <div class="stage" id="stage" aria-hidden="true">
+        <canvas id="gl"></canvas>
+        <div class="hud">
+          <div class="hud__corner hud__corner--tl"></div>
+          <div class="hud__corner hud__corner--tr"></div>
+          <div class="hud__corner hud__corner--bl"></div>
+          <div class="hud__corner hud__corner--br"></div>
+          <div class="hud__bottom mono">
+            <div class="hud__scene">
+              <span class="hud__idx" id="hudIdx">01</span><span class="hud__sep">/06</span>
+              <span class="hud__name" id="hudName">K'UK'ULKAN · 365 ESCALONES</span>
+            </div>
+            <div class="hud__ticks" id="hudTicks"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="hud__coord" id="hudCoord">20.6843° N · 88.5678° O</div>
+          </div>
+        </div>
+      </div>
+
+      <section class="hero" id="inicio" data-nav="dark">
+        <div class="hero__inner wrap" id="heroInner">
+          <p class="kicker mono"><span class="pulse"></span>Comunidad de IA &amp; ciencia de datos · Yucatán, MX</p>
+          <h1 class="hero__title" data-split>Inteligencia artificial con raíces <em>mayas</em>.</h1>
+          <div class="hero__foot">
+            <p class="lede" data-reveal>maIAs reúne a quienes aprenden, investigan y construyen con datos en la península. Del machine learning clásico a la IA generativa, con la mirada puesta en nuestra tierra.</p>
+            <div class="hero__cta" data-reveal>
+              <a class="btn btn--light" href="#unete" data-cursor="únete">Únete a maIAs</a>
+              <a class="btn btn--ghost" href="#comunidad">Conoce la comunidad <span aria-hidden="true">↓</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-hint mono" aria-hidden="true"><span></span>scroll</div>
+      </section>
+    </div>
+
+    <!-- ============ COMUNIDAD ============ -->
+    <section class="community" id="comunidad" data-nav="dark">
+      <div class="wrap community__grid">
+        <div class="community__text">
+          <p class="kicker mono">01 — La comunidad</p>
+          <h2 class="sec-title" data-split>Gente de aquí, aprendiendo <em>en voz alta</em>.</h2>
+          <p class="community__lede" data-reveal>maIAs nació en Yucatán para que nadie aprenda inteligencia artificial en soledad. Nos juntamos estudiantes, profesionales, docentes e investigadores para compartir lo que sabemos, equivocarnos juntos y construir proyectos con datos de la península.</p>
+          <ul class="values">
+            <li data-reveal><span class="values__n" data-maya="1"></span><div><b>Abierta</b><p>Gratuita y para todos los niveles. No necesitas saber programar para llegar.</p></div></li>
+            <li data-reveal><span class="values__n" data-maya="2"></span><div><b>Local</b><p>Problemas, datos y talento de la península. Lo que hacemos se queda aquí.</p></div></li>
+            <li data-reveal><span class="values__n" data-maya="3"></span><div><b>Rigurosa</b><p>Fundamentos antes que modas. Medimos, validamos y explicamos.</p></div></li>
+            <li data-reveal><span class="values__n" data-maya="4"></span><div><b>Bilingüe</b><p>En español y, cada vez más, en maya.</p></div></li>
+          </ul>
+          <div class="community__cta" data-reveal>
+            <a class="btn btn--light" href="#unete" data-cursor="ko'ox">Súmate</a>
+            <a class="btn btn--ghost" href="#programas">Qué hacemos <span aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <!-- Galería: reemplaza cualquier imagen en img/galeria/ (mismo nombre) por fotos de sus eventos -->
+        <div class="gallery-wrap">
+        <div class="gallery" aria-label="Galería de actividades">
+          <div class="gallery__col" data-speed="0.06">
+            <figure class="ph ph--tall" data-reveal>
+              <img src="img/galeria/demo.jpg" alt="Demo day" loading="lazy" onerror="this.remove()" />
+              <div class="ph__empty" aria-hidden="true"><span class="ph__glyph" data-maya="1"></span><span class="mono">Agrega una foto</span><code class="mono">img/galeria/demo.jpg</code></div>
+              <figcaption class="mono"><span>Demo day</span><span>Presentar</span></figcaption>
+            </figure>
+            <figure class="ph ph--square" data-reveal>
+              <img src="img/galeria/taller.jpg" alt="Talleres" loading="lazy" onerror="this.remove()" />
+              <div class="ph__empty" aria-hidden="true"><span class="ph__glyph" data-maya="2"></span><span class="mono">Agrega una foto</span><code class="mono">img/galeria/taller.jpg</code></div>
+              <figcaption class="mono"><span>Talleres</span><span>Aprender</span></figcaption>
+            </figure>
+            <figure class="ph ph--wide" data-reveal>
+              <img src="img/galeria/hackaton.jpg" alt="Hackatones" loading="lazy" onerror="this.remove()" />
+              <div class="ph__empty" aria-hidden="true"><span class="ph__glyph" data-maya="3"></span><span class="mono">Agrega una foto</span><code class="mono">img/galeria/hackaton.jpg</code></div>
+              <figcaption class="mono"><span>Hackatones</span><span>Construir</span></figcaption>
+            </figure>
+          </div>
+          <div class="gallery__col gallery__col--offset" data-speed="-0.08">
+            <figure class="ph ph--square" data-reveal>
+              <img src="img/galeria/estudio.jpg" alt="Grupos de estudio" loading="lazy" onerror="this.remove()" />
+              <div class="ph__empty" aria-hidden="true"><span class="ph__glyph" data-maya="4"></span><span class="mono">Agrega una foto</span><code class="mono">img/galeria/estudio.jpg</code></div>
+              <figcaption class="mono"><span>Grupos de estudio</span><span>Aprender juntos</span></figcaption>
+            </figure>
+            <figure class="ph ph--tall" data-reveal>
+              <img src="img/galeria/mentoria.jpg" alt="Mentoría" loading="lazy" onerror="this.remove()" />
+              <div class="ph__empty" aria-hidden="true"><span class="ph__glyph" data-maya="5"></span><span class="mono">Agrega una foto</span><code class="mono">img/galeria/mentoria.jpg</code></div>
+              <figcaption class="mono"><span>Mentoría</span><span>Acompañar</span></figcaption>
+            </figure>
+            <figure class="ph ph--square" data-reveal>
+              <img src="img/galeria/charla.jpg" alt="Charlas" loading="lazy" onerror="this.remove()" />
+              <div class="ph__empty" aria-hidden="true"><span class="ph__glyph" data-maya="6"></span><span class="mono">Agrega una foto</span><code class="mono">img/galeria/charla.jpg</code></div>
+              <figcaption class="mono"><span>Charlas</span><span>Compartir</span></figcaption>
+            </figure>
+          </div>
+        </div>
+        <p class="gallery__credits">Fotos ilustrativas de Wikimedia Commons (se reemplazarán por fotos de nuestros eventos): <a href="https://commons.wikimedia.org/wiki/File:Tom_Kristian_Abel_pitching_at_Fellin_H%C3%A4kk_hackathon_2026.jpg" target="_blank" rel="noopener">Demo day</a> — Maido Parv, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Taller_de_programaci%C3%B3n_Mobile.jpg" target="_blank" rel="noopener">Talleres</a> — USL Jujuy, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Hacking_at_FOSSASIA_Summit_2019.jpg" target="_blank" rel="noopener">Hackatones</a> — autor desconocido, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Wikimania_2014_-_Day_1_-_Hackathon_participants_05.JPG" target="_blank" rel="noopener">Grupos de estudio</a> — Gaelle Berton, <a href="https://creativecommons.org/licenses/by-sa/3.0" target="_blank" rel="noopener">CC BY-SA 3.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Explicaciones_en_el_taller_de_programaci%C3%B3n_mobile.jpg" target="_blank" rel="noopener">Mentoría</a> — USL Jujuy, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Curso_Taller_ACERCA_-_Desarrollo_sostenible,_Innovaci%C3%B3n_y_Tecnolog%C3%ADa.jpg" target="_blank" rel="noopener">Charlas</a> — CCPERosario, <a href="https://creativecommons.org/licenses/by-sa/4.0" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CINTA ============ -->
+    <div class="ribbon" data-nav="light" aria-hidden="true">
+      <svg class="ribbon__greca"><rect width="100%" height="24" fill="url(#greca)"/></svg>
+      <div class="marquee mono">
+        <div class="marquee__track">
+          <span>Ciencia de datos</span><i>✦</i><span>Machine learning</span><i>✦</i><span>Visión por computadora</span><i>✦</i><span>Maya yucateco &amp; NLP</span><i>✦</i><span>Series de tiempo</span><i>✦</i><span>Deep learning</span><i>✦</i><span>IA generativa</span><i>✦</i><span>MLOps</span><i>✦</i><span>Estadística</span><i>✦</i><span>Datos abiertos</span><i>✦</i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ ÁREAS ============ -->
+    <section class="areas section-light" id="areas" data-nav="light">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="kicker mono">02 — Áreas</p>
+          <h2 class="sec-title" data-split>La IA es más que <em>un chatbot</em>.</h2>
+          <p class="sec-lede" data-reveal>No nos quedamos en la IA generativa. Cubrimos todo el espectro: de los datos crudos al modelo en producción, de la estadística a la visión por computadora.</p>
+        </header>
+
+        <div class="cards">
+          <article class="card tilt" data-reveal>
+            <div class="card__top"><span class="card__num" data-maya="1"></span><span class="mono card__tag">01</span></div>
+            <canvas class="viz" data-viz="scatter"></canvas>
+            <h3>Ciencia de datos</h3>
+            <p>Limpieza, análisis exploratorio y estadística. Buenas preguntas antes que modelos grandes.</p>
+            <ul class="chips mono"><li>pandas</li><li>SQL</li><li>estadística</li></ul>
+          </article>
+          <article class="card tilt" data-reveal>
+            <div class="card__top"><span class="card__num" data-maya="2"></span><span class="mono card__tag">02</span></div>
+            <canvas class="viz" data-viz="classify"></canvas>
+            <h3>Machine learning</h3>
+            <p>Regresión, clasificación y clustering: los fundamentos que siguen resolviendo la mayoría de los problemas reales.</p>
+            <ul class="chips mono"><li>scikit-learn</li><li>XGBoost</li></ul>
+          </article>
+          <article class="card tilt" data-reveal>
+            <div class="card__top"><span class="card__num" data-maya="3"></span><span class="mono card__tag">03</span></div>
+            <canvas class="viz" data-viz="net"></canvas>
+            <h3>Deep learning</h3>
+            <p>Redes neuronales desde cero hasta arquitecturas modernas, entendiendo qué pasa adentro.</p>
+            <ul class="chips mono"><li>PyTorch</li><li>transformers</li></ul>
+          </article>
+          <article class="card tilt" data-reveal>
+            <div class="card__top"><span class="card__num" data-maya="4"></span><span class="mono card__tag">04</span></div>
+            <canvas class="viz" data-viz="vision"></canvas>
+            <h3>Visión por computadora</h3>
+            <p>Detección, segmentación y análisis de imágenes satelitales, de drones y de campo.</p>
+            <ul class="chips mono"><li>OpenCV</li><li>YOLO</li><li>satélite</li></ul>
+          </article>
+          <article class="card tilt" data-reveal>
+            <div class="card__top"><span class="card__num" data-maya="5"></span><span class="mono card__tag">05</span></div>
+            <canvas class="viz" data-viz="nlp"></canvas>
+            <h3>Lenguaje y lenguas</h3>
+            <p>PLN en español y en maya yucateco: corpus, traducción y herramientas para una lengua viva.</p>
+            <ul class="chips mono"><li>NLP</li><li>yua</li><li>corpus</li></ul>
+          </article>
+          <article class="card tilt" data-reveal>
+            <div class="card__top"><span class="card__num" data-maya="6"></span><span class="mono card__tag">06</span></div>
+            <canvas class="viz" data-viz="gen"></canvas>
+            <h3>IA generativa</h3>
+            <p>LLMs, difusión y agentes, usados con criterio y con los pies en la tierra.</p>
+            <ul class="chips mono"><li>LLMs</li><li>RAG</li><li>agentes</li></ul>
+          </article>
+          <article class="card tilt" data-reveal>
+            <div class="card__top"><span class="card__num" data-maya="7"></span><span class="mono card__tag">07</span></div>
+            <canvas class="viz" data-viz="series"></canvas>
+            <h3>Series de tiempo</h3>
+            <p>Lluvia, calor, turismo, energía: pronosticar lo que importa en la península.</p>
+            <ul class="chips mono"><li>forecasting</li><li>clima</li></ul>
+          </article>
+          <article class="card tilt" data-reveal>
+            <div class="card__top"><span class="card__num" data-maya="8"></span><span class="mono card__tag">08</span></div>
+            <canvas class="viz" data-viz="ops"></canvas>
+            <h3>MLOps y producción</h3>
+            <p>Del notebook al servicio: despliegue, monitoreo y datos versionados.</p>
+            <ul class="chips mono"><li>Docker</li><li>APIs</li><li>CI/CD</li></ul>
+          </article>
+        </div>
+        <div class="apply" data-reveal>
+          <div class="apply__head"><p class="kicker mono">Dónde queremos aplicarla</p><p class="apply__sub">Problemas reales de la península, no demos.</p></div>
+          <ul class="apply__list">
+            <li><b>Agua</b><span>Acuífero y cenotes</span><em class="mono">series de tiempo</em></li>
+            <li><b>Campo</b><span>Milpa y apicultura</span><em class="mono">visión</em></li>
+            <li><b>Salud</b><span>Epidemiología regional</span><em class="mono">ML</em></li>
+            <li><b>Turismo</b><span>Demanda y movilidad</span><em class="mono">forecasting</em></li>
+            <li><b>Patrimonio</b><span>LiDAR y arqueología</span><em class="mono">visión 3D</em></li>
+            <li><b>Lengua</b><span>Maya yucateco</span><em class="mono">NLP</em></li>
+          </ul>
+        </div>
+        <p class="areas__note mono" data-reveal>＋ Transversal a todo: ética, privacidad y datos abiertos.</p>
+      </div>
+    </section>
+
+    <!-- ============ PROGRAMAS ============ -->
+    <section class="programs section-light" id="programas" data-nav="light">
+      <div class="wrap">
+        <header class="sec-head">
+          <p class="kicker mono">03 — Programas</p>
+          <h2 class="sec-title" data-split>Aprender, construir, <em>compartir</em>.</h2>
+        </header>
+
+        <div class="program">
+          <div class="program__text">
+            <p class="program__idx mono">1.0 — Aprende</p>
+            <h3 class="program__title" data-split>Aprende con otros, no solo con tutoriales.</h3>
+            <p data-reveal>Meetups, talleres prácticos y rutas de estudio para todos los niveles. Si apenas empiezas con Python o ya entrenas modelos, hay un lugar para ti.</p>
+            <ol class="program__list mono">
+              <li><span>1.1</span>Meetups mensuales</li>
+              <li><span>1.2</span>Talleres prácticos</li>
+              <li><span>1.3</span>Rutas de estudio</li>
+              <li><span>1.4</span>Mentoría entre pares</li>
+            </ol>
+          </div>
+          <div class="mock mock--nb tilt" data-reveal>
+            <div class="mock__bar mono"><span class="mock__tab is-on">taller_01.ipynb</span><span class="mock__tab">datos/</span><span class="mock__status"><i></i>kernel listo</span></div>
+            <div class="nb">
+              <div class="nb__cell"><span class="nb__in mono">[1]</span><pre class="mono"><b class="k">import</b> pandas <b class="k">as</b> pd
+<b class="k">from</b> sklearn.ensemble <b class="k">import</b> RandomForestRegressor
+
+df = pd.read_csv(<s>"lluvia_peninsula.csv"</s>)</pre></div>
+              <div class="nb__cell"><span class="nb__in mono">[2]</span><pre class="mono">modelo = RandomForestRegressor(n_estimators=<u>300</u>)
+modelo.fit(X_train, y_train)</pre></div>
+              <div class="nb__out mono" id="nbOut"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="program">
+          <div class="program__text">
+            <p class="program__idx mono">2.0 — Construye</p>
+            <h3 class="program__title" data-split>Proyectos con datos de aquí.</h3>
+            <p data-reveal>Hackatones y proyectos abiertos sobre problemas de la península: agua, campo, salud, turismo y patrimonio. Código que se queda en la comunidad.</p>
+            <ol class="program__list mono">
+              <li><span>2.1</span>Hackatones</li>
+              <li><span>2.2</span>Proyectos abiertos</li>
+              <li><span>2.3</span>Datos de Yucatán</li>
+              <li><span>2.4</span>Grupos de estudio</li>
+            </ol>
+          </div>
+          <div class="mock mock--viewer tilt" data-reveal>
+            <div class="mock__bar mono"><span class="mock__tab is-on">visor</span><span class="mock__tab">consultas</span><span class="mock__status mock__status--warn">datos simulados</span></div>
+            <div class="viewer">
+              <ul class="viewer__tree mono">
+                <li class="is-dir">/milpa</li>
+                <li><i style="--c:var(--azul-maya)"></i>humedad_suelo</li>
+                <li><i style="--c:var(--ambar)"></i>temperatura</li>
+                <li class="is-dir">/cenote</li>
+                <li><i style="--c:var(--almagre-2)"></i>nivel_agua</li>
+                <li class="is-dir">/clima</li>
+                <li class="is-muted">lluvia_mm</li>
+              </ul>
+              <div class="viewer__main">
+                <canvas class="viz viz--viewer" data-viz="viewer"></canvas>
+                <div class="viewer__timeline"><span class="viewer__head"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="program">
+          <div class="program__text">
+            <p class="program__idx mono">3.0 — Comparte</p>
+            <h3 class="program__title" data-split>Conocimiento que circula.</h3>
+            <p data-reveal>Charlas, divulgación y contenido abierto, en español y en maya. Tendemos puentes entre universidades, empresas y quien tenga curiosidad.</p>
+            <ol class="program__list mono">
+              <li><span>3.1</span>Charlas y divulgación</li>
+              <li><span>3.2</span>Contenido en español y maya</li>
+              <li><span>3.3</span>Vínculo academia–industria</li>
+              <li><span>3.4</span>Todo en abierto</li>
+            </ol>
+          </div>
+          <div class="mock mock--nlp tilt" data-reveal>
+            <div class="mock__bar mono"><span class="mock__tab is-on">es ⇄ yua</span><span class="mock__tab">corpus</span><span class="mock__status">ejemplo</span></div>
+            <div class="nlp" id="nlp">
+              <div class="nlp__row"><span class="nlp__lang mono">ES</span><span class="nlp__text" id="nlpEs"></span></div>
+              <div class="nlp__arrow mono" aria-hidden="true">↓ tokens <span id="nlpTok"></span></div>
+              <div class="nlp__row nlp__row--out"><span class="nlp__lang mono">YUA</span><span class="nlp__text" id="nlpYua"></span><span class="nlp__caret"></span></div>
+              <p class="nlp__note mono">Frases comunes en maya yucateco</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BASE 20 ============ -->
+    <section class="cero" id="cero" data-nav="light">
+      <div class="wrap cero__grid">
+        <div class="cero__text">
+          <p class="kicker mono">04 — Sistema vigesimal</p>
+          <h2 class="sec-title" data-split>Los mayas inventaron <em>el cero</em>.</h2>
+          <p data-reveal>Lo hicieron de forma independiente, con una numeración posicional en base 20: punto, barra y concha. Con ella llevaban cuentas de miles de años. Escribe un número y míralo como lo habrían escrito.</p>
+          <label class="cero__field" data-reveal>
+            <span class="mono">Tu número</span>
+            <input id="mayaInput" type="number" inputmode="numeric" min="0" max="63999999" value="2026" aria-describedby="mayaBreak" />
+          </label>
+          <div class="cero__chips mono" data-reveal>
+            <button type="button" data-n="0">0</button>
+            <button type="button" data-n="260">260</button>
+            <button type="button" data-n="365">365</button>
+            <button type="button" data-n="584">584</button>
+            <button type="button" data-n="2026">2026</button>
+          </div>
+        </div>
+        <div class="cero__out">
+          <div class="cero__glyph" id="mayaOut" aria-hidden="true"></div>
+          <ol class="cero__break mono" id="mayaBreak" aria-live="polite"></ol>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="today" data-reveal>
+          <div class="today__head mono"><span>Hoy en la Cuenta Larga</span><span class="today__live"><i></i>en vivo</span></div>
+          <div class="today__body">
+            <div class="lc" id="lcGlyphs"></div>
+            <p class="lc__code" id="lcCode"></p>
+            <dl class="today__rows mono">
+              <div><dt>Tzolk'in</dt><dd id="lcTz"></dd></div>
+              <div><dt>Haab'</dt><dd id="lcHaab"></dd></div>
+              <div><dt>Días desde 13.0.0.0.0</dt><dd id="lcDays"></dd></div>
+            </dl>
+          </div>
+          <p class="today__foot mono">Correlación GMT 584283 · la cuenta inicia en 4 Ajaw 8 Kumk'u, 3114 a. C.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ÚNETE ============ -->
+    <section class="join" id="unete" data-nav="dark">
+      <div class="wrap join__grid">
+        <div>
+          <p class="kicker mono">05 — Únete</p>
+          <h2 class="join__title" data-split>Ko'ox<em>.</em></h2>
+          <p class="join__sub mono">“Vamos”, en maya yucateco.</p>
+          <p class="join__lede" data-reveal>Construyamos juntos la IA de Yucatán. Estudiantes, profesionales, academia, empresas o pura curiosidad: hay lugar para ti.</p>
+          <ul class="join__social mono" data-reveal>
+            <!-- TODO: reemplazar con los enlaces reales de la comunidad -->
+            <li><a href="#">Discord ↗</a></li>
+            <li><a href="#">WhatsApp ↗</a></li>
+            <li><a href="#">Instagram ↗</a></li>
+            <li><a href="#">LinkedIn ↗</a></li>
+          </ul>
+        </div>
+        <form class="form" id="joinForm" data-reveal novalidate>
+          <label><span class="mono">Nombre</span><input name="nombre" required autocomplete="name" placeholder="¿Cómo te llamas?" /></label>
+          <label><span class="mono">Correo</span><input name="correo" type="email" required autocomplete="email" placeholder="tu@correo.com" /></label>
+          <label><span class="mono">Perfil</span>
+            <select name="perfil">
+              <option>Estudiante</option>
+              <option>Profesional</option>
+              <option>Academia / investigación</option>
+              <option>Empresa / gobierno</option>
+              <option>Pura curiosidad</option>
+            </select>
+          </label>
+          <button class="btn btn--light btn--block" type="submit" data-cursor="ko'ox">Quiero unirme</button>
+          <p class="form__msg mono" id="formMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-nav="dark">
+    <svg class="frieze" aria-hidden="true"><rect width="100%" height="44" fill="url(#frieze)"/></svg>
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="#inicio" class="logo" aria-label="maIAs, inicio">
+            <img class="logo__img logo__img--claro" src="img/logo-claro.png" alt="maIAs" width="1215" height="312" /><img class="logo__img logo__img--oscuro" src="img/logo-oscuro.png" alt="" width="1215" height="312" aria-hidden="true" />
+          </a>
+          <p>Comunidad de inteligencia artificial y ciencia de datos en Yucatán.</p>
+        </div>
+        <nav class="footer__col" aria-label="Secciones">
+          <span class="mono">Secciones</span>
+          <a href="#comunidad">Comunidad</a>
+          <a href="#areas">Áreas</a>
+          <a href="#programas">Programas</a>
+          <a href="#cero">Base 20</a>
+        </nav>
+        <nav class="footer__col" aria-label="Redes">
+          <span class="mono">Redes</span>
+          <!-- TODO: reemplazar con los enlaces reales -->
+          <a href="#">Discord</a>
+          <a href="#">WhatsApp</a>
+          <a href="#">Instagram</a>
+          <a href="#">LinkedIn</a>
+        </nav>
+      </div>
+      <div class="footer__row">
+        <span>© <span id="year">2026</span> maIAs · Hecho en Mérida, Yucatán</span>
+        <a href="#inicio">Volver arriba ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="vendor/three.min.js"></script>
+  <script src="vendor/lenis.min.js"></script>
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/ScrollTrigger.min.js"></script>
+  <script src="js/maya.js"></script>
+  <script src="js/scene.js"></script>
+  <script src="js/viz.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/motion.js"></script>
+</body>
+</html>
